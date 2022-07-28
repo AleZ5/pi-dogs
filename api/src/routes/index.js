@@ -16,7 +16,7 @@ const getApiInfo = async () => {
             id: dog.id,
             height: dog.height.metric,
             weight: dog.weight.metric,
-            years: dog.years,
+            life_span: dog.life_span,
             origin: dog.origin,
             temperament: dog.temperament || "no info",
             image: dog.image.url 
@@ -54,6 +54,63 @@ router.get("/dogs", async (req,res) =>{
         res.status(400).send("No dog found");
     } else {
         res.status(200).send(dogsTotal)
+    }
+})
+
+router.get("/temperaments", async (req,res) => {
+    const allDogsBreeds = await getAllDogs()
+    const temperamentsSet = new Set()
+    allDogsBreeds.forEach(breed => {
+        breed.temperament?.split(",").forEach(temperament => {
+            temperamentsSet.add(temperament.trim())
+        })
+    }) 
+    temperamentsSet.forEach( async temperament => {
+        if ( temperament ){
+       await Temperament.findOrCreate({
+            where: {name: temperament}
+        })}
+    })
+    const allTemperaments = await Temperament.findAll();
+    res.send(allTemperaments);
+})
+
+router.post("/dogs", async (req,res) => {
+    try { let {name,
+        height,
+        weight,
+        life_span,
+        image,
+        temperament,
+    } = req.body
+
+    let dogCreated = await Dog.create ({
+        name,
+        height,
+        weight,
+        life_span,
+        image,
+    })
+    console.log(temperament.split(","));
+    let temperamentDb = await Temperament.findAll({
+        where: { name: temperament.split(",").map(temp => temp.trim())}
+    })
+    dogCreated.addTemperament(temperamentDb)
+    res.send("Dog successfully created")
+        
+    } catch (error) {
+        console.log("Can not create this dog", error)
+    } 
+});
+
+router.get("/dogs/:id", async (req,res) => {
+    const id = req.params.id;
+    const dogsTotal = await getAllDogs()
+    if(id) {
+        let dogId = await dogsTotal.filter( el => el.id == id)
+        dogId.length?
+        res.status(200).json(dogId) :
+        res.status(400).send("No dog found")
     }
 })
 
