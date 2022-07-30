@@ -16,7 +16,7 @@ const getApiInfo = async () => {
             id: dog.id,
             height: dog.height.metric,
             weight: dog.weight.metric,
-            life_span: dog.life_span,
+            years: dog.years,
             origin: dog.origin,
             temperament: dog.temperament || "no info",
             image: dog.image.url 
@@ -79,7 +79,7 @@ router.post("/dogs", async (req,res) => {
     try { let {name,
         height,
         weight,
-        life_span,
+        years,
         image,
         temperament,
     } = req.body
@@ -88,7 +88,7 @@ router.post("/dogs", async (req,res) => {
         name,
         height,
         weight,
-        life_span,
+        years,
         image,
     })
     console.log(temperament.split(","));
