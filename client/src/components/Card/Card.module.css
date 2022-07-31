@@ -61,7 +61,7 @@
   transform-origin: right;
   background-size: cover;
   transition-delay: 0.3s;
-  background-image: url("../images/hue.jpeg");
+  background-image: url("/Users/alezapata/Desktop/PI-Dogs-main/client/src/images/hue.jpeg");
 }
 
 .container .card:hover .contentBx::before

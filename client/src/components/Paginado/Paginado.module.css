@@ -1,0 +1,34 @@
+ul {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.list {
+  display:inline-flex;
+}
+.list > button {
+  cursor: pointer;
+  border: 1px solid #00000030;
+  padding: 0.5rem;
+  margin-right: 0.2rem;
+  margin-left: 0.2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 2.0rem;
+  background-color: white;
+  border: solid 1px #ffbf69;
+  border-radius: 20%;
+  transition: background 1s, color 1s;
+  font-family:cursive;
+  font-size: 1rem;
+}
+
+.list > button:hover {
+  background: #ff9f1c;
+  color: white;
+}
+.list > button:focus {
+  background:coral;
+  border: solid 1px #e66215;
+  color: #505050;
+}
