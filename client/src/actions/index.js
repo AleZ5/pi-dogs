@@ -10,6 +10,33 @@ export function getDogs(){
         })
     }
 }
+export function getNameDogs(name){
+    return async function (dispatch){
+        try{
+           var json = await axios.get ("http://localhost:3001/dogs?name=" + name);
+           return dispatch({
+               type: "GET_NAME_DOGS",
+               payload: json.data
+           })
+        } catch (error){
+            console.log(error)
+        }
+    }
+}
+export function getTemperaments(payload){
+    return async function (dispatch){
+        var info = await axios.get("http://localhost:3001/temperaments",{
+        });
+        return dispatch({type: "GET_TEMPERAMENTS", payload: info.data})
+    }
+}
+export function postDog(payload){
+    return async function(dispatch){
+        const response = await axios.post("http://localhost:3001/dogs",payload)
+        console.log(response)
+        return response;
+    }
+}
 export function filterByApiordb(payload){
     return{
         type: "FILTER_BY_APIORDB",

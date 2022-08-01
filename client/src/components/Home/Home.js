@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import Card from "../Card/Card";
 import styles from "./Home.module.css";
 import Paginado from "../Paginado/Paginado";
+import SearchBar from "../SearchBar/SearchBar";
+
 
 export default function Home(){
 
@@ -76,6 +78,7 @@ export default function Home(){
                 allDogs={allDogs.length}
                 paginado={paginado}
                 />
+                <SearchBar/>
                 {currentDogs?.map((c) => {
                     return (
                         <div className={styles.cardArea}>

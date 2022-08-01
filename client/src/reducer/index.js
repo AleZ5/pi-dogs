@@ -12,12 +12,26 @@ function rootReducer (state= initialState, action){
                 dogs: action.payload,
                 dogsSafe: action.payload
             }
+            case "GET_NAME_DOGS":
+                return{
+                    ...state,
+                    dogs: action.payload
+                }
+            case "GET_TEMPERAMENTS":
+                return{
+                    ...state,
+                    temperaments: action.payload
+                }
             case "FILTER_BY_TEMPER":
                 const allDogs = state.dogsSafe
                 const temperFilter = action.payload === "all" ? allDogs : allDogs.filter(el => el.temperament === action.payload) 
             return {
                 ...state,
                 temperaments: temperFilter
+                }
+            case "POST_DOG":
+                return{
+                    ...state
                 }
             case "FILTER_BY_APIORDB":
                 const allDogsTwo = state.dogsSafe
