@@ -23,18 +23,43 @@ export function getNameDogs(name){
         }
     }
 }
+/* export function getTemperaments(){
+    return function(dispatch){
+        return fetch("http://localhost:3001/temperaments")
+        .then(res => res.json())
+        .then(json => dispatch({
+            type:"GET_TEMPERAMENTS",
+            payload: json
+        }))
+    }
+} */
 export function getTemperaments(payload){
     return async function (dispatch){
         var info = await axios.get("http://localhost:3001/temperaments",{
         });
         return dispatch({type: "GET_TEMPERAMENTS", payload: info.data})
     }
-}
+} 
 export function postDog(payload){
     return async function(dispatch){
         const response = await axios.post("http://localhost:3001/dogs",payload)
         console.log(response)
         return response;
+    }
+}
+export function getDogById(id){
+    return function(dispatch){
+        axios(`http://localhost:3001/dogs/${id}`)
+        /* .then(res => res.json()) */
+        .then(json => dispatch({
+            type:"GET_DOG_BY_ID",
+            payload: json.data[0] 
+        }))
+    }
+}
+export function resetDetail(){
+    return{
+        type: "RESET_DETAIL"
     }
 }
 export function filterByApiordb(payload){
@@ -44,7 +69,7 @@ export function filterByApiordb(payload){
     }
 }
 export function filterByTemper(payload){
-    return{
+    return {
         type: "FILTER_BY_TEMPER",
         payload
     }

@@ -1,0 +1,55 @@
+.container{
+    background-image: url("/Users/alezapata/Desktop/PI-Dogs-main/client/src/images/adorable-white-bulldog-puppy-portrait.jpg");
+    background-size: contain;
+    background-repeat: repeat;
+    background-attachment:fixed;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.container .title{
+    font-size: 3.5em;
+    position:relative;
+    display:flex;
+    top: 40px;
+    left: 100px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform:capitalize;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgb(190, 181, 5);
+}
+
+.container .img{
+  position: relative;
+  display:flex;
+  float: left;
+  left: -300px;
+  top:40px;
+  margin: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  max-height: 400px;
+  box-shadow: inset 10px 10px 50px #fff; 
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.container .cont{
+    font-size: 1.2em;
+    position: relative;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: capitalize;
+    top: -300px;
+    left: 300px;
+    right: 100;
+    bottom: 100px;
+    text-align: left;
+    
+}
+

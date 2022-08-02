@@ -17,12 +17,14 @@ function handleInputChange(event){
 function handleSubmit(event){
     event.preventDefault()
     dispatch(getNameDogs(name))
+    setName("")
 }
 
 
     return(
         <div>
             <input
+            value={name}
             type = "text"
             placeholder = "Find a breed here"
             onChange = {(event) => handleInputChange(event)}/>

@@ -16,7 +16,7 @@ const getApiInfo = async () => {
             id: dog.id,
             height: dog.height.metric,
             weight: dog.weight.metric,
-            years: dog.years,
+            life_span: dog.life_span,
             origin: dog.origin,
             temperament: dog.temperament || "no info",
             image: dog.image.url 
@@ -79,7 +79,7 @@ router.post("/dogs", async (req,res) => {
     try { let {name,
         height,
         weight,
-        years,
+        life_span,
         image,
         temperament,
     } = req.body
@@ -88,15 +88,14 @@ router.post("/dogs", async (req,res) => {
         name,
         height,
         weight,
-        years,
-        image,
+        life_span,
+        image
     })
-    console.log(temperament.split(","));
     let temperamentDb = await Temperament.findAll({
-        where: { name: temperament.split(",").map(temp => temp.trim())}
+        where: { name: temperament}
     })
     dogCreated.addTemperament(temperamentDb)
-    res.send("Dog successfully created")
+    res.status(200).send("Dog successfully created")
         
     } catch (error) {
         console.log("Can not create this dog", error)

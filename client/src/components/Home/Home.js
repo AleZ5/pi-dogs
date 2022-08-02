@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { getDogs, filterByTemper, filterByApiordb, orderByAtoZ, orderByWeight} from "../../actions";
+import { getDogs, getTemperaments, filterByTemper, filterByApiordb, orderByAtoZ, orderByWeight} from "../../actions";
 import {Link} from "react-router-dom";
 import Card from "../Card/Card";
 import styles from "./Home.module.css";
@@ -9,10 +9,12 @@ import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
 
 
+
 export default function Home(){
 
     const dispatch = useDispatch()
     const allDogs = useSelector ((state) => state.dogs)
+    const temperaments = useSelector((state) => state.temperaments)
     const [order, setOrder]= useState("")
     const [currentPage,setCurrentPage] = useState(1)
     const [dogsPerPage,setDogsPerPage] = useState(8)
@@ -20,7 +22,6 @@ export default function Home(){
     const indexOfFirstDog = indexOfLastDog - dogsPerPage
     const currentDogs = allDogs?.slice(indexOfFirstDog,indexOfLastDog)
     const length = allDogs?.length;
-    const temperaments = useSelector((state) => state.temperaments)
 
 
     const paginado = (pageNumber) => {
@@ -29,6 +30,7 @@ export default function Home(){
 
     useEffect (()=>{
         dispatch(getDogs());
+        dispatch(getTemperaments());
     },[dispatch])
 
     function handleCLick(event){
@@ -39,17 +41,25 @@ export default function Home(){
     function handleFilterByTemper(event){
         dispatch(filterByTemper(event.target.value))
         setCurrentPage(1);
+        setOrder(event.target.value)
     }
 
     function handleFilterByApiordb(event){
         dispatch(filterByApiordb(event.target.value))
+        setCurrentPage(1);
+        setOrder(event.target.value)
     }
 
     function handleSort(event){
         event.preventDefault();
         dispatch(orderByAtoZ(event.target.value))
         setCurrentPage(1);
-        setOrder(`Order ${event.target.value}`)
+        setOrder(event.target.value)
+    }
+    function handleOrderByWeight(event){
+        dispatch(orderByWeight(event.target.value))
+        setCurrentPage(1);
+        setOrder(event.target.value)
     }
 
     return (
@@ -61,16 +71,27 @@ export default function Home(){
             </button>
             <div>
                 <select onClick={event => handleSort(event)}>
-                    <option value= "asc">A - Z</option>
-                    <option value= "desc">Z - A</option>
+                    <option value="asc">A - Z</option>
+                    <option value="desc">Z - A</option>
                 </select>
                 <select onChange={event => handleFilterByApiordb(event)}>
-                    <option value= "all">All Dogs</option>
-                    <option value= "created">Created Dogs</option>
-                    <option value= "api">Existing Dogs</option>
+                    <option value="all">All Dogs</option>
+                    <option value="created">Created Dogs</option>
+                    <option value="api">Existing Dogs</option>
                 </select>
                 <select onChange={event => handleFilterByTemper(event)}>
-                    <option value= "all">By Temperament</option>
+                    <option value="all">By Temperament</option>
+                    {temperaments.map((event) => (
+                        <option value={event.name}>{event.name}</option>
+                    ))}
+                </select>  
+                <label className={styles.label}>Order by Weight</label>
+                <select onChange={(event) => handleOrderByWeight(event)} className={styles.select}>
+                    <option value="" disabled >
+                        Pick one...
+                    </option>
+                    <option value="min"> Lightest - Heaviest</option>
+                    <option value="max"> Heaviest - Lightest </option>
                 </select>
                 <Paginado
                 value={currentPage}
@@ -82,7 +103,7 @@ export default function Home(){
                 {currentDogs?.map((c) => {
                     return (
                         <div className={styles.cardArea}>
-                          <Link to={"/home/" + c.id}>
+                          <Link key={c.id} to={'/dogs/' + c.id}> 
                           <Card name={c.name} image={c.image} temperament={c.temperament} weight={c.weight} key={c.id}/>
                           </Link>
                         </div>
