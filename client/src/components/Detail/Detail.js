@@ -19,18 +19,18 @@ export default function Detail(props){
         <div className={styles.container}>
          
          <div > 
-         <Link to='/home'><button className={styles.button}>Back</button> </Link>
+         <Link to='/home'><button className={styles.btn}>Back</button> </Link>
              <h1 className={styles.title}> {myDog.name} </h1>
              <img className={styles.img} src={myDog.image}/>
-             <h5 className={styles.cont}>Height: {myDog.height}</h5>
-             <h5 className={styles.cont}>Weight: {myDog.weight}</h5>
+             <h5 className={styles.cont}>Height: {myDog.height} cm</h5>
+             <h5 className={styles.cont}>Weight: {myDog.weight} kg</h5>
              <h5 className={styles.cont}>Origin: {myDog.origin}</h5>
              <h5 className={styles.cont}>Temperaments:</h5>
              <h5 className={styles.cont}>{myDog.createdInDb
                           ? myDog.temperaments.map((el) => el.name).join(", ")
-                          : myDog.temperament}</h5>
+                          : myDog.temperament}</h5> 
              <h5 className={styles.cont}>Life Span: {myDog.life_span}</h5>
-        <Link to='/home'><button className={styles.button}>Go Home</button> </Link>
+        <Link to='/home'><button className={styles.btn}>Go Home</button> </Link>
          </div> 
           </div>
     )

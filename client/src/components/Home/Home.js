@@ -63,9 +63,11 @@ export default function Home(){
     }
 
     return (
-        <div>
+        <div className={styles}>
             <Link to= "/dog">Create Dog</Link>
+            <div className={styles.title2}>
             <h1>Welcome to Pawradise</h1>
+            </div>
             <button onClick={event=>{handleCLick(event)}}>
                 Reload all dogs 
             </button>
@@ -100,15 +102,15 @@ export default function Home(){
                 paginado={paginado}
                 />
                 <SearchBar/>
+                <div className={styles.cardArea}>
                 {currentDogs?.map((c) => {
                     return (
-                        <div className={styles.cardArea}>
                           <Link key={c.id} to={'/dogs/' + c.id}> 
-                          <Card name={c.name} image={c.image} temperament={c.temperament} weight={c.weight} key={c.id}/>
-                          </Link>
-                        </div>
+                          <Card name={c.name} image={c.image} temperaments={c.temperaments} temperament={c.temperament} weight={c.weight} key={c.id}/>
+                          </Link>   
                     );
                })}
+               </div>
             </div>
         </div>
     )

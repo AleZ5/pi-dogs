@@ -119,11 +119,11 @@ export default function DogCreate(){
                     />
                 </div>
                 <div>
-                <label className={styles.lbl}>Years Span:</label>
+                <label className={styles.lbl}>Life Span:</label>
                     <input
                     type="text"
-                    value= {input.years}
-                    name="years"
+                    value= {input.life_span}
+                    name="life_span"
                     onChange={(e) => handleChange(e)}
                     className={styles.inpt}
                     />

@@ -1,15 +1,15 @@
 .container {
     height: 100vh;
     width: 100%;
-    background-color: #cbf3f0;
+    background-color: #d0f5f2;
     background-image: url("/Users/alezapata/Desktop/PI-Dogs-main/client/src/images/friendly-smart-basenji-dog-giving-his-paw-close-up-isolated-on-white.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
   
   .container > h1 {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: #ff9f1c;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #f49510;
     margin-bottom: 3rem;
     font-size: 3.5rem;
     position: relative;
@@ -17,9 +17,9 @@
   }
   
   .lbl {
-    color: #505050;
+    color: #444343;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: #ffbf69;
+    background-color: #ffb34f;
     border-radius: 1rem;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
@@ -31,9 +31,9 @@
   }
   
   .inpt {
-    color: #505050;
+    color: #424141;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border: solid 2px #2ec4b6;
+    border: solid 2px #2cd5c4;
     border-radius: 1rem;
     padding: 0.3rem;
     margin-bottom: 1rem;
@@ -42,9 +42,9 @@
   
   .btn {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #505050;
+    color: #464646;
     border-radius: 1rem;
-    background-color: #2ec4b6;
+    background-color: #25dcca;
     height: 2.5rem;
     margin: 3rem;
     font-size: 1.2rem;
@@ -56,10 +56,10 @@
   }
   
   .cls {
-    color: #585858;
+    color: #464646;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 1rem;
-    background-color: #2ec4b6;
+    background-color: #25dcca;
     border: none;
     margin-right: 0.8rem;
     transition: filter 0.5s;
@@ -74,12 +74,12 @@
   }
   .temps > span {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #505050;
+    color: #3e3e3e;
   }
   
   p {
     display: inline;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #e93a3a;
+    color: #f8571d;
     padding: 1rem;
   }

@@ -12,9 +12,10 @@ export default function Card(props){
                <div className={styles.content}>
                   <h1>{props.name}</h1>
                   <h2>Weight:{props.weight} kg</h2>
-                  <h3>Temperaments: {props.createdInDb
+                  <h3>Temperaments: {props.temperament || props.temperaments.map((el) => el.name).join(", ")}</h3>
+                  {/* <h3>Temperaments: {props.createdInDb
                           ? props.temperaments.map((el) => el.name).join(", ")
-                          : props.temperament}</h3>
+                          : props.temperament}</h3> */}
                </div>
              </div>
          </div>

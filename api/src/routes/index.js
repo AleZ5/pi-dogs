@@ -35,7 +35,7 @@ const getDbInfo = async () => {
             },
         }
     })
-}
+} 
 
 const getAllDogs = async () =>{
     const apiInfo = await getApiInfo();
