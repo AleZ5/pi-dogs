@@ -88,7 +88,7 @@ export function filterByTemper(payload){
     }
 }
 
-/* export function orderByWeight(payload){
+ export function orderByWeight(payload){
     return{
         type: "ORDER_BY_WEIGHT",
         payload 
@@ -100,12 +100,12 @@ export function orderByAtoZ(payload){
         type: "ORDER_BY_ATOZ",
         payload
     }
-} */
-export function order(payload){
+} 
+/* export function order(payload){
     return{
         type: "ORDER",
         payload
     }
-}
+} */
 
 

@@ -6,6 +6,35 @@ import { useDispatch,useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import styles from "../DogCreate/DogCreate.module.css";
 
+function validate(input){
+    let errors={};
+    let nameValue = /^[a-zA-Z\s]*$/;
+    if(!input.name || input.namemlenght > 30 || nameValue.test(input.name) === false){
+        errors.name = "A Breed is Required, max 30 characters";
+    }
+    if (!input.heightMin || !input.heightMax ||
+        input.heightMin < 0 || input.heightMin > 100 ||
+        input.heightMax < 0 || input.heightMax > 100 ||
+        input.heightMin >= input.heightMax){
+          errors.height = "Introduce a min and a max height";
+    }
+    if (!input.weightMin || !input.weightMax ||
+        input.weightMin < 0 || input.weightMin > 100 ||
+        input.weightMax < 0 || input.weightMax > 100 ||
+        input.weightMin >= input.weightMax){
+          errors.weight = "Introduce a min and a max weight";
+    }
+     if (!input.temperament.lenght){
+        errors.temperament = "Choose at least one Temperament"
+    }
+    /* if (errors.name === "Great" &&
+        errors.height === "Good" &&
+        errors.weight === "Good" &&
+        errors.temperament === "Done"){
+            errors.submit = "You can submit"
+        } */
+    return errors;
+}
 
 export default function DogCreate(){
     const dispatch = useDispatch()
@@ -29,10 +58,10 @@ export default function DogCreate(){
         temperament:[]
     })
     const [errors,setErrors] = useState({
-        name: "",
+       /*  name: "",
         height: "",
         weight: "",
-        submit:"",
+        submit:"", */
     });
     
 
@@ -53,6 +82,10 @@ export default function DogCreate(){
             ...input,
             temperament: [...input.temperament,e.target.value]
         })
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }));
       }
     }
     function handleDelete(e){
@@ -78,46 +111,6 @@ export default function DogCreate(){
         })
         history.push("/home")
     }
-
-    
-    function validate(input){
-        let errors={};
-        let nameValue = /^[a-zA-Z\s]*$/;
-        if(!input.name || input.namemlenght > 30 || nameValue.test(input.name) === false){
-            errors.name = "A Breed is Required, max 30 characters";
-        } else {
-            errors.name = "Great";
-        }
-        if (!input.heightMin || !input.heightMax ||
-            input.heightMin < 0 || input.heightMin > 100 ||
-            input.heightMax < 0 || input.heightMax > 100 ||
-            input.heightMin >= input.heightMax){
-              errors.height = "Introduce a min and a max height";
-        }else {
-            errors.height = "Good";
-        }
-        if (!input.weightMin || !input.weightMax ||
-            input.weightMin < 0 || input.weightMin > 100 ||
-            input.weightMax < 0 || input.weightMax > 100 ||
-            input.weightMin >= input.weightMax){
-              errors.weight = "Introduce a min and a max weight";
-        }else{
-            errors.weight = "Good";
-        }
-        /* if (!input.temperament.lenght){
-            errors.temperament = "Choose at least one Temperament"
-        }else{
-            errors.temperament = "Done"
-        } */
-        if (errors.name === "Great" &&
-            errors.height === "Good" &&
-            errors.weight === "Good" &&
-            errors.temperament === "Done"){
-                errors.submit = "You can submit"
-            }
-        return errors;
-    }
-
      
     return(
         <div className={styles.container}>
@@ -128,6 +121,7 @@ export default function DogCreate(){
                 <div>
                     <label className={styles.lbl}>Dog Breed:</label>
                     <input
+                    required
                     type= "text"
                     value= {input.name}
                     name="name"
@@ -141,6 +135,7 @@ export default function DogCreate(){
                 <div>
                     <label className={styles.lbl}>Height Min:</label>
                     <input
+                    required
                     placeholder="01"
                     type="number"
                     value= {input.heightMin}
@@ -166,6 +161,7 @@ export default function DogCreate(){
                 <div>
                 <label className={styles.lbl}>Weight Min:</label>
                     <input
+                    required
                     placeholder="01"
                     type="number"
                     value= {input.weightMin}
@@ -222,15 +218,18 @@ export default function DogCreate(){
                     />
                 </div>  
                 <label className={styles.lbl}>Temperaments:</label>
-                <select onChange={(e) => handleSelect(e)} className={styles.inpt}>
+                <select onChange={(e) => handleSelect(e)} className={styles.inpt} >
+                 
                     <option value="" disabled>
                         Choose 1 - 3...
                     </option>
                     {temperaments.map((temp) =>(
-                        <option value={temp.name}>{temp.name}</option>
+                        <option value={temp.name} name="temperament">{temp.name}</option>
                     ))}
+                    {errors.temperament && (
+                            <p className={styles.error}>{errors.temperament}</p>
+                        )}
                 </select>
-                
                 <ul>
                     <li>
                         {input.temperament.map(el =>
@@ -241,16 +240,19 @@ export default function DogCreate(){
                     </li>
                 </ul>
                 <div>
-                <input className={styles.btn} type="submit" value="Create Dog"/>
-                {errors.submit && (
-                        <p className={styles.error}>{errors.submit}</p>
-                    )}
+                {/* <input className={styles.btn} type="submit" value="Create Dog"/> */}
+                {errors.name || errors.height || errors.weight || errors.temperament
+                    ? <h3>You have missing inputs</h3> :
+                      <div>
+                          <button className={styles.btn} type="submit" >Create Dog</button>
+                      </div>
+                    }
                 
             <Link to= "/home">
                 <button className={styles.btn}>
                     Back to Home
                 </button>
-            </Link>
+            </Link> 
             </div>
             </div>
             </form>

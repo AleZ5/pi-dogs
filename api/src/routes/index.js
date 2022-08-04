@@ -89,12 +89,9 @@ router.post("/dogs", async (req,res) => {
 
     let dogCreated = await Dog.create ({
         name,
-        heightMin,
-        heightMax,
-        weightMin,
-        weightMax,
-        life_spanMin,
-        life_spanMax,
+        height: `${heightMin} - ${heightMax}`,
+        weight: `${weightMin} - ${weightMax}`,
+        life_span: `${life_spanMin} - ${life_spanMax}`,
         image
     })
     let temperamentDb = await Temperament.findAll({

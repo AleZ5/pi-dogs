@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { getDogs, getTemperaments, filterByTemper, filterByApiordb, order /* orderByAtoZ, orderByWeight */} from "../../actions";
+import { getDogs, getTemperaments, filterByTemper, filterByApiordb, /* order  */orderByAtoZ, orderByWeight } from "../../actions";
 import {Link} from "react-router-dom";
 import Card from "../Card/Card";
 import styles from "./Home.module.css";
@@ -55,14 +55,14 @@ export default function Home(){
         setOrder(event.target.value)
         
     }
-    function orders(e){
+   /*  function orders(e){
         e.preventDefault();
         dispatch(order(e.target.value));
         setCurrentPage(1)
         
-    }
+    } */
 
-    /* function handleSort(event){
+     function handleSort(event){
         event.preventDefault();
         dispatch(orderByAtoZ(event.target.value))
         setCurrentPage(1);
@@ -72,7 +72,7 @@ export default function Home(){
         dispatch(orderByWeight(event.target.value))
         setCurrentPage(1);
         setOrder(event.target.value)
-    } */
+    } 
 
     return (
         <div className={styles}>
@@ -85,10 +85,10 @@ export default function Home(){
                 Reload all dogs 
             </button>
             <div>
-                {/* <select onClick={event => handleSort(event)}>
+                <select onClick={event => handleSort(event)}>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
-                </select> */}
+                </select> 
                 <label className={styles.lbl}>Filter By:</label>
                 <select className={styles.select} onChange={event => handleFilterByApiordb(event)}>
                     <option value="all">All Dogs</option>
@@ -105,7 +105,7 @@ export default function Home(){
                         <option value={event.name}>{event.name}</option>
                     ))}
                 </select>  
-                <div>
+                {/* <div>
                     <label className={styles.lbl}>Order by:</label>
                     <select className={styles.select} defaultValue="asc" onChange={(e)=> orders(e)}>
                     <option value="" disabled >
@@ -116,8 +116,8 @@ export default function Home(){
                     <option value="min"> Lightest - Heaviest</option>
                     <option value="max"> Heaviest - Lightest </option>
                     </select>
-                </div>
-                {/* <div>
+                </div> */}
+                <div>
                 <label className={styles.label}>Order by:</label>
                 <select onChange={(event) => handleOrderByWeight(event)} className={styles.select}>
                     <option value="" disabled >
@@ -130,7 +130,7 @@ export default function Home(){
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
                 </select>
-                </div> */}
+                </div> 
                 <Paginado
                 value={currentPage}
                 dogsPerPage={dogsPerPage}
