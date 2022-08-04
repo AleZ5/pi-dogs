@@ -3,7 +3,10 @@ const initialState = {
     dogs: [],
     temperaments: [],
     dogsSafe: [],
-    detail: []
+    detail: [],
+    orderFilter: {
+        order: "all"
+    }
 }
 function rootReducer (state= initialState, action){
    
@@ -65,7 +68,61 @@ function rootReducer (state= initialState, action){
                     ...state,
                     dogs: action.payload === "all"? state.dogsSafe : apiFilter
                 }
-            case "ORDER_BY_WEIGHT":
+            case "ORDER":
+                let sort =[];
+                let order= action.payload;
+                if (order == "all")
+                    state.dogs = state.dogsSafe
+               /*  return{
+                    ...state,
+                    state.dogsorderFilter:{
+                        ...state.orderFilter,
+                        order:"all",
+                    } */
+                
+                if (order =="asc"){
+                    sort = state.dogs.sort((a,b)=>{
+                        if(a.name.toLowerCase() > b.name.toLowerCase()){
+                            return 1;
+                        }
+                        if(a.name.toLowerCase() < b.name.toLowerCase()){
+                            return -1;
+                        }
+                        return 0;
+                    })
+                }
+                if (order == "dsc"){
+                    sort = state.dogs.sort((a,b)=>{
+                        if(a.name.toLowerCase() > b.name.toLowerCase()){
+                            return -1;
+                        }
+                        if(a.name.toLowerCase() < b.name.toLowerCase()){
+                            return 1;
+                        }
+                        return 0;
+                    })
+                }
+                if (order == "min"){
+                    sort = state.dogs.sort((a,b)=>{
+                        return(
+                            a.weight.metric.replace(/\s+/g, "").split("-")[1]-
+                            b.weight.metric.replace(/\s+/g, "").split("-")[1]
+                        )
+                    })
+                }
+                if(order == "max"){
+                    sort = state.dogs.sort((a,b)=>
+                        b.weight.metric.replace(/\s+/g, "").split("-")[1] -
+                        a.weight.metric.replace(/\s+/g, "").split("-")[1]
+                    )
+                }
+                return{
+                    ...state,
+                    dogs: [...sort],
+                    
+                }
+
+            /* case "ORDER_BY_WEIGHT":
                   action.payload === "min" ?
                   state.dogs.sort(function(a,b){
                       if(a.weight > b.weight) {
@@ -112,11 +169,11 @@ function rootReducer (state= initialState, action){
                 return {
                     ...state,
                     dogs: sortedArr
-                }
+                } */
             default:
                 return state;
     }
 
-
 }
+
 export default rootReducer;

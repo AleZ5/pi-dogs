@@ -1,56 +1,37 @@
-* {
-    margin: 0;
-    padding: 0
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    height:100vh;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-body {
-    font-family: "Audiowide", sans-serif;
-    letter-spacing: 0.8px;
-  }
-
-h1 {
-    position:sticky;
-    color:  #66ddbc;
-    text-shadow: 1.5px 1.3px rgb(255, 255, 255);
+.title{
+    position:fixed;
+    top: 10px;
+    left: 110px;
+    font-size: 6em;
+    color:  #66ecc6;
+    text-decoration:dotted;
+    text-decoration-color: burlywood;
+    text-shadow: 2.5px 2.3px rgb(237, 151, 45);
     letter-spacing: 2.1px;
 }
 
-.home { 
-    display: flex;
-    justify-self: center;
-    align-self: center;
-}
-
 .btn { 
+    position:fixed;
+    top: 110px;
+    right: 100px;
     border: none;
     border-radius: 4px;
-    background-color: #009bcfcb;
+    background-color: #ed960bf6;
     box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.527);
     padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
     letter-spacing: 1.75px;
     font-size: 40px;
-    font-family: "Audiowide", sans-serif;
-    text-shadow: 1.5px 1.3px rgb(238, 225, 225);
-    transition:  all;/* usaba >>background-color font-size cursor text-shadow >> "all"*/
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-shadow: 1.5px 1.3px rgb(29, 234, 196);
+    transition:  all;
     transition-duration: 0.7s;
 }
 
 .btn:hover { 
-    background-color: #4caf4fd3;
-    color: white;
+    background-color: #24d9cdef;
+    color: rgb(245, 192, 139);
     font-size: 50px;
-    cursor: pointer;
+    cursor:grab;
     border-radius: 5px;
     text-shadow: 2.5px 2.3px rgba(20, 20, 20, 0.692);
     box-shadow: 8px 10px 12px rgba(0, 0, 0, 0.527);

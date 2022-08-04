@@ -17,7 +17,7 @@ const getApiInfo = async () => {
             height: dog.height.metric,
             weight: dog.weight.metric,
             life_span: dog.life_span,
-            origin: dog.origin,
+            origin: dog.origin || "no info",
             temperament: dog.temperament || "no info",
             image: dog.image.url 
         };
@@ -77,18 +77,24 @@ router.get("/temperaments", async (req,res) => {
 
 router.post("/dogs", async (req,res) => {
     try { let {name,
-        height,
-        weight,
-        life_span,
+        heightMin,
+        heightMax,
+        weightMin,
+        weightMax,
+        life_spanMin,
+        life_spanMax,
         image,
         temperament,
     } = req.body
 
     let dogCreated = await Dog.create ({
         name,
-        height,
-        weight,
-        life_span,
+        heightMin,
+        heightMax,
+        weightMin,
+        weightMax,
+        life_spanMin,
+        life_spanMax,
         image
     })
     let temperamentDb = await Temperament.findAll({

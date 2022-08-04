@@ -6,6 +6,7 @@ export default function Card(props){
         <div className={styles.container}>
          <div className={styles.card}>
              <div className={styles.imgBx}>
+               <h1>{props.name}</h1>
                <img className={styles.img}src={props.image} alt="📸 not found"/>
              </div>
              <div className={styles.contentBx}>

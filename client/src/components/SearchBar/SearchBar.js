@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameDogs } from "../../actions";
+import styles from "../SearchBar/SearchBar.module.css";
 
 
 export default function SearchBar(){
@@ -11,7 +12,6 @@ export default function SearchBar(){
 function handleInputChange(event){
     event.preventDefault()
      setName(event.target.value)
-     console.log(name)
 }
 
 function handleSubmit(event){
@@ -20,15 +20,15 @@ function handleSubmit(event){
     setName("")
 }
 
-
     return(
         <div>
             <input
+            className={styles.search}
             value={name}
             type = "text"
-            placeholder = "Find a breed here"
+            placeholder = "Find a breed here..."
             onChange = {(event) => handleInputChange(event)}/>
-            <button type="submit" onClick={(event) => handleSubmit(event)}>
+            <button  className={styles.btn2}type="submit" onClick={(event) => handleSubmit(event)}>
                 Search!
             </button>
         </div>
