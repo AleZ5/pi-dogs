@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function getDogs(){
+export function getDogs(){   //home//
     return async function(dispatch){
         var json = await axios.get("http://localhost:3001/dogs", {
         });
@@ -10,7 +10,7 @@ export function getDogs(){
         })
     }
 }
-export function getNameDogs(name){
+export function getNameDogs(name){     //searchBar//
     return async function (dispatch){
         try{
            var json = await axios.get ("http://localhost:3001/dogs?name=" + name);
@@ -23,14 +23,14 @@ export function getNameDogs(name){
         }
     }
 }
-export function getTemperaments(payload){
+export function getTemperaments(payload){     //temp filter  
     return async function (dispatch){
         var info = await axios.get("http://localhost:3001/temperaments",{
         });
         return dispatch({type: "GET_TEMPERAMENTS", payload: info.data})
     }
 } 
-/* export function getTemperaments(){
+/* export function getTemperaments(){   esto es un fetch con promesas 
     return function(dispatch){
         return fetch("http://localhost:3001/temperaments")
         .then(res => res.json())
@@ -40,24 +40,24 @@ export function getTemperaments(payload){
         }))
     }
 } */
-export function postDog(payload){
+export function postDog(payload){   //createdog
     return async function(dispatch){
         const response = await axios.post("http://localhost:3001/dogs",payload)
         return response;
     }
 }
-export function getDogById(id){
+export function getDogById(id){   //detail  
     return function(dispatch){
         axios(`http://localhost:3001/dogs/${id}`)
         /* .then(res => res.json()) */
         .then(json => dispatch({
             type:"GET_DOG_BY_ID",
-            payload: json.data[0] 
+            payload: json.data[0]
         }))
     }
 }
 
-/* export function getDogById(id){
+/* export function getDogById(id){   esto es async await con axios 
     return async function (dispatch){
         try{
             var json = await axios.get("http://localhost:3001/dogs/" + id);
@@ -101,11 +101,6 @@ export function orderByAtoZ(payload){
         payload
     }
 } 
-/* export function order(payload){
-    return{
-        type: "ORDER",
-        payload
-    }
-} */
+
 
 

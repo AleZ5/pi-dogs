@@ -9,7 +9,7 @@ import styles from "../DogCreate/DogCreate.module.css";
 function validate(input){
     let errors={};
     let nameValue = /^[a-zA-Z\s]*$/;
-    if(!input.name || input.namemlenght > 30 || nameValue.test(input.name) === false){
+    if(!input.name || input.name.length > 30 || nameValue.test(input.name) === false){
         errors.name = "A Breed is Required, max 30 characters";
     }
     if (!input.heightMin || !input.heightMax ||
@@ -24,15 +24,10 @@ function validate(input){
         input.weightMin >= input.weightMax){
           errors.weight = "Introduce a min and a max weight";
     }
-     if (!input.temperament.lenght){
+     if (!input.temperament.length){
         errors.temperament = "Choose at least one Temperament"
     }
-    /* if (errors.name === "Great" &&
-        errors.height === "Good" &&
-        errors.weight === "Good" &&
-        errors.temperament === "Done"){
-            errors.submit = "You can submit"
-        } */
+
     return errors;
 }
 
@@ -58,10 +53,6 @@ export default function DogCreate(){
         temperament:[]
     })
     const [errors,setErrors] = useState({
-       /*  name: "",
-        height: "",
-        weight: "",
-        submit:"", */
     });
     
 
@@ -133,7 +124,7 @@ export default function DogCreate(){
                     )}
                 </div>
                 <div>
-                    <label className={styles.lbl}>Height Min:</label>
+                    <label className={styles.lbl}>Height Min: cm</label>
                     <input
                     required
                     placeholder="01"
@@ -148,7 +139,7 @@ export default function DogCreate(){
                     )}
                 </div>
                 <div>
-                    <label className={styles.lbl}>Height Max:</label>
+                    <label className={styles.lbl}>Height Max: cm</label>
                     <input
                     placeholder="99"
                     type="number"
@@ -159,7 +150,7 @@ export default function DogCreate(){
                     />
                 </div>
                 <div>
-                <label className={styles.lbl}>Weight Min:</label>
+                <label className={styles.lbl}>Weight Min: kg</label>
                     <input
                     required
                     placeholder="01"
@@ -171,7 +162,7 @@ export default function DogCreate(){
                     />
                 </div>
                 <div>
-                <label className={styles.lbl}>Weight Max:</label>
+                <label className={styles.lbl}>Weight Max: kg</label>
                     <input
                     placeholder="99"
                     type="number"
@@ -185,7 +176,7 @@ export default function DogCreate(){
                     )}
                 </div>
                 <div>
-                <label className={styles.lbl}>Life Span Min:</label>
+                <label className={styles.lbl}>Life Span Min: years</label>
                     <input
                     placeholder="01"
                     type="number"
@@ -196,7 +187,7 @@ export default function DogCreate(){
                     />
                 </div>
                 <div>
-                <label className={styles.lbl}>Life Span Max:</label>
+                <label className={styles.lbl}>Life Span Max: years </label>
                     <input
                     placeholder="99"
                     type="number"
@@ -226,10 +217,10 @@ export default function DogCreate(){
                     {temperaments.map((temp) =>(
                         <option value={temp.name} name="temperament">{temp.name}</option>
                     ))}
-                    {errors.temperament && (
+                </select>
+                {errors.temperament && (
                             <p className={styles.error}>{errors.temperament}</p>
                         )}
-                </select>
                 <ul>
                     <li>
                         {input.temperament.map(el =>

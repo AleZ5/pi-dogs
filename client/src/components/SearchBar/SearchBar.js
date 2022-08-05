@@ -16,8 +16,12 @@ function handleInputChange(event){
 
 function handleSubmit(event){
     event.preventDefault()
-    dispatch(getNameDogs(name))
-    setName("")
+    if(name.length !== 0 ){
+        dispatch(getNameDogs(name)) 
+    }
+    if(name.length === 0){
+        alert("You must type a breed")
+    }setName("")
 }
 
     return(

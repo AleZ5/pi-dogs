@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { getDogs, getTemperaments, filterByTemper, filterByApiordb, /* order  */orderByAtoZ, orderByWeight } from "../../actions";
+import { getDogs, getTemperaments, filterByTemper, filterByApiordb, orderByAtoZ, orderByWeight } from "../../actions";
 import {Link} from "react-router-dom";
 import Card from "../Card/Card";
 import styles from "./Home.module.css";
@@ -55,12 +55,7 @@ export default function Home(){
         setOrder(event.target.value)
         
     }
-   /*  function orders(e){
-        e.preventDefault();
-        dispatch(order(e.target.value));
-        setCurrentPage(1)
-        
-    } */
+  
 
      function handleSort(event){
         event.preventDefault();
@@ -85,10 +80,6 @@ export default function Home(){
                 Reload all dogs 
             </button>
             <div>
-                <select onClick={event => handleSort(event)}>
-                    <option value="asc">A - Z</option>
-                    <option value="desc">Z - A</option>
-                </select> 
                 <label className={styles.lbl}>Filter By:</label>
                 <select className={styles.select} onChange={event => handleFilterByApiordb(event)}>
                     <option value="all">All Dogs</option>
@@ -105,20 +96,8 @@ export default function Home(){
                         <option value={event.name}>{event.name}</option>
                     ))}
                 </select>  
-                {/* <div>
-                    <label className={styles.lbl}>Order by:</label>
-                    <select className={styles.select} defaultValue="asc" onChange={(e)=> orders(e)}>
-                    <option value="" disabled >
-                        Pick one...
-                    </option>
-                    <option value="asc">A - Z</option>
-                    <option value="desc">Z - A</option>
-                    <option value="min"> Lightest - Heaviest</option>
-                    <option value="max"> Heaviest - Lightest </option>
-                    </select>
-                </div> */}
                 <div>
-                <label className={styles.label}>Order by:</label>
+                <label className={styles.lbl}>Order by:</label>
                 <select onChange={(event) => handleOrderByWeight(event)} className={styles.select}>
                     <option value="" disabled >
                         Pick one...
@@ -126,7 +105,7 @@ export default function Home(){
                     <option value="min"> Lightest - Heaviest</option>
                     <option value="max"> Heaviest - Lightest </option>
                 </select>
-                <select onClick={event => handleSort(event)}>
+                <select onClick={event => handleSort(event)} className={styles.select}>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
                 </select>
@@ -137,15 +116,16 @@ export default function Home(){
                 allDogs={allDogs.length}
                 paginado={paginado}
                 />
+                
                 <SearchBar/>
                 <div className={styles.cardArea}>
-                {currentDogs?.map((c) => {
+                {currentDogs ? currentDogs.map((c) => {
                     return (
                           <Link key={c.id} to={'/dogs/' + c.id}> 
                           <Card name={c.name} image={c.image} temperaments={c.temperaments} temperament={c.temperament} weight={c.weight} key={c.id}/>
                           </Link>   
                     );
-               })}
+               }): <div> LOADING...</div>}
                </div>
             </div>
         </div>

@@ -62,7 +62,7 @@ router.get("/temperaments", async (req,res) => {
     const temperamentsSet = new Set()
     allDogsBreeds.forEach(breed => {
         breed.temperament?.split(",").forEach(temperament => {
-            temperamentsSet.add(temperament.trim())
+            temperamentsSet.add(temperament.trim()) 
         })
     }) 
     temperamentsSet.forEach( async temperament => {
@@ -115,5 +115,6 @@ router.get("/dogs/:id", async (req,res) => {
         res.status(400).send("No dog found")
     }
 })
+
 
 module.exports = router;

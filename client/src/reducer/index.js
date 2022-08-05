@@ -4,9 +4,7 @@ const initialState = {
     temperaments: [],
     dogsSafe: [],
     detail: [],
-    /* orderFilter: {
-        order: "all"
-    } */
+    
 }
 function rootReducer (state= initialState, action){
    
@@ -48,7 +46,7 @@ function rootReducer (state= initialState, action){
                      ...state,
                      dogs: dogs2
                  }
-             /*    action.payload === "all"? state.dogs= state.dogsSafe.filter(inf => inf.temperaments.lenght):
+             /*    action.payload === "all"? state.dogs= state.dogsSafe.filter(inf => inf.temperaments.length):
                 state.dogs= state.dogsSafe.filter(temp => temp.temperaments.includes(action.payload))
                 return {
                     ...state,
@@ -69,59 +67,7 @@ function rootReducer (state= initialState, action){
                     ...state,
                     dogs: action.payload === "all"? state.dogsSafe : apiFilter
                 }
-            /* case "ORDER":
-                let sort =[];
-                let order= action.payload;
-                if (order == "all")
-                    state.dogs = state.dogsSafe
-                 return{
-                    ...state,
-                    state.dogsorderFilter:{
-                        ...state.orderFilter,
-                        order:"all",
-                    } 
-                
-                if (order =="asc"){
-                    sort = state.dogs.sort((a,b)=>{
-                        if(a.name.toLowerCase() > b.name.toLowerCase()){
-                            return 1;
-                        }
-                        if(a.name.toLowerCase() < b.name.toLowerCase()){
-                            return -1;
-                        }
-                        return 0;
-                    })
-                }
-                if (order == "dsc"){
-                    sort = state.dogs.sort((a,b)=>{
-                        if(a.name.toLowerCase() > b.name.toLowerCase()){
-                            return -1;
-                        }
-                        if(a.name.toLowerCase() < b.name.toLowerCase()){
-                            return 1;
-                        }
-                        return 0;
-                    })
-                }
-                if (order == "min"){
-                    sort = state.dogs.sort((a,b)=>{
-                        return(
-                            a.weight.metric.replace(/\s+/g, "").split("-")[1]-
-                            b.weight.metric.replace(/\s+/g, "").split("-")[1]
-                        )
-                    })
-                }
-                if(order == "max"){
-                    sort = state.dogs.sort((a,b)=>
-                        b.weight.metric.replace(/\s+/g, "").split("-")[1] -
-                        a.weight.metric.replace(/\s+/g, "").split("-")[1]
-                    )
-                }
-                return{
-                    ...state,
-                    dogs: [...sort],
-                    
-                } */
+            
 
             case "ORDER_BY_WEIGHT":
                   action.payload === "min" ?
