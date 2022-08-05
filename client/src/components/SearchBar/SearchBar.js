@@ -19,16 +19,14 @@ function handleSubmit(event){
     if(name.length !== 0 ){
         dispatch(getNameDogs(name)) 
     }
-    if(name.length === 0){
-        alert("You must type a breed")
-    }setName("")
+    
 }
 
     return(
         <div>
             <input
             className={styles.search}
-            value={name}
+            
             type = "text"
             placeholder = "Find a breed here..."
             onChange = {(event) => handleInputChange(event)}/>

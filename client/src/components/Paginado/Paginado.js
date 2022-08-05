@@ -1,22 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import styles from "../Paginado/Paginado.module.css";
 
 export default function Paginado({ dogsPerPage, allDogs, paginado }) {
   const pageNumbers = []; 
-
-  for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const [pageNum , setPageNum] = useState(1)
+    for(let i = 0; i < Math.ceil(allDogs/dogsPerPage); i++){
+     pageNumbers.push(i+1)
+   } 
 
   return (
-    <nav>
+   <nav>
       <ul>
+    
         {pageNumbers?.map((number) => (
           <li key={number} className={styles.list}>
             <button onClick={() => paginado(number)}>{number}</button>
           </li>
         ))}
+    
       </ul>
     </nav>
   );
-}
+} 
